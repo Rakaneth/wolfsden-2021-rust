@@ -1,0 +1,14 @@
+[package]
+name = "wolfsden-2021-rust"
+version = "0.1.0"
+authors = ["Quincy West <rakaneth@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chargrid_graphical = "0.2"
+chargrid = "0.3"
+coord_2d = "0.2"
+rgb24 = "0.2"
+direction = "0.17"
