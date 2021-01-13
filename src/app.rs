@@ -5,7 +5,7 @@ use chargrid::{
     render::{ColModify, Frame, View, ViewCell, ViewContext}
 };
 use coord_2d::Size;
-use direction::CardinalDirection;
+use direction::Direction;
 use rgb24::Rgb24;
 use std::time::Duration;
 
@@ -23,10 +23,14 @@ impl AppData {
     fn handle_input(&mut self, input: Input) {
         match input {
             Input::Keyboard(key) => match key {
-                KeyboardInput::Left => self.game_state.maybe_move_player(CardinalDirection::West),
-                KeyboardInput::Right => self.game_state.maybe_move_player(CardinalDirection::East),
-                KeyboardInput::Up => self.game_state.maybe_move_player(CardinalDirection::North),
-                KeyboardInput::Down => self.game_state.maybe_move_player(CardinalDirection::South),
+                KeyboardInput::Char('a') => self.game_state.maybe_move_player(Direction::West),
+                KeyboardInput::Char('d') => self.game_state.maybe_move_player(Direction::East),
+                KeyboardInput::Char('w')=> self.game_state.maybe_move_player(Direction::North),
+                KeyboardInput::Char('s') => self.game_state.maybe_move_player(Direction::South),
+                KeyboardInput::Char('q') => self.game_state.maybe_move_player(Direction::NorthWest),
+                KeyboardInput::Char('e') => self.game_state.maybe_move_player(Direction::NorthEast),
+                KeyboardInput::Char('z') => self.game_state.maybe_move_player(Direction::SouthWest),
+                KeyboardInput::Char('c') => self.game_state.maybe_move_player(Direction::SouthEast),
                 _ => {},
             },
             _ => {},

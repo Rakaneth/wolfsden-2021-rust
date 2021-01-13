@@ -1,5 +1,5 @@
 use coord_2d::{Coord, Size};
-use direction::CardinalDirection;
+use direction::Direction;
 use entity_table::{Entity, EntityAllocator};
 
 entity_table::declare_entity_module! {
@@ -26,6 +26,7 @@ impl GameState {
     fn populate(&mut self, player_coord: Coord) {
         self.spawn_player(player_coord);
     }
+    
     pub fn new(screen_size: Size) -> Self {
         let mut entity_allocator = EntityAllocator::default();
         let components = Components::default();
@@ -39,7 +40,7 @@ impl GameState {
         game_state
     }
 
-    pub fn maybe_move_player(&mut self, direction: CardinalDirection) {
+    pub fn maybe_move_player(&mut self, direction: Direction) {
         let player_coord = self.components.coord.get_mut(self.player_entity).expect("player has no coord component");
         let new_player_coord = *player_coord + direction.coord();
         if new_player_coord.is_valid(self.screen_size) {
